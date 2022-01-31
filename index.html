@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-     <title>Jeremy Xaynakham's IT116 Portal</title>
+     <title>DOM Play</title>
   <meta charset="utf-8" />
   <meta name="robots" content="noindex,nofollow" />
   <meta name="viewport" content="width=device-width" />
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/nav.css" />
+  <style>
+/*
+    div#play p span{
+        background-color: yellow;
+    }{
+        background-color: yellow;
+    }
+*/    
+  </style>
  </head>
  <body>
      <header>
-     <h1>Title Goes Here</h1>
-        <nav class="topnav" id="myTopnav">
-            <a href="index.html" class="active">Home</a>
-            <a href="#">add link here</a>
-
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-        </nav>
+     <h1>DOM Play</h1>
      </header>
 
    <main class="wrapper">
-
-
-       <p>Content Goes Here</p>
-       
-
-        
+     <div id="play">
+      <h3>This page uses JavaScript to allow a user to click on the name of an actor and highlight their lines in a play. This page uses data-attributes and an
+         anonymous function to loop through a nodelist and compare data-attributes to highlight or unhighlight text</h3> 
+      <br>
+      <p><span data-actor="rocket">Rocket: Why are we doing this again?</span></p>
+      <p><span data-actor="gamora">Gamora: It's a distress signal, Rocket. Someone could be dying.</span></p>
+      <p><span data-actor="rocket">Rocket: I get that, but why are we doing it?</span></p>
+      <p><span data-actor="quill">Quill: Cause we're nice. And maybe whoever it is will give us a little cheddar cheese for our help.</span></p>
+      <p><span data-actor="gamora">Gamora: Which isn't the point.</span></p>
+      <p><span data-actor="quill">Quill: Which isn't the point… I mean… If he doesn't pony up…</span></p>
+      <p><span data-actor="rocket">Rocket: We'll take his ship.</span></p>
+      <p><span data-actor="quill">Quill: B-b-b-bingo!</span></p>
+  </div>
      <footer>
       <p><small>&copy; 2021 by 
           Jeremy Xaynakham, All Rights Reserved ~ 
@@ -34,6 +44,34 @@
      </p>
     </footer>
   </main>
+  <script>
+
+  const spans = document.querySelectorAll('div#play p span');
+
+  console.log(spans);
+
+  for(const mySpan of spans){
+    mySpan.addEventListener('click',function(ev){
+      //alert(mySpan.dataset.actor); 
+
+      highlightActor(mySpan.dataset.actor);
+
+    });
+  }
+
+  function highlightActor(actor){
+  
+    for(const mySpan of spans){
+      if(actor == mySpan.dataset.actor){
+        mySpan.style.backgroundColor = "yellow";
+      }else{
+        mySpan.style.backgroundColor = "white";
+      }
+    }
+  }
+
+   //document.querySelector('span.hamlet').style.backgroundColor = "yellow"
+  </script>
   <script src="js/main.js"></script> 
  </body>
 </html>
